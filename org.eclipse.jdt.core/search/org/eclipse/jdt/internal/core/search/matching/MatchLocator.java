@@ -102,26 +102,7 @@ import org.eclipse.jdt.internal.core.util.Util;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class MatchLocator implements ITypeRequestor {
 
-public static final int MAX_AT_ONCE;
-static {
-	long maxMemory = Runtime.getRuntime().maxMemory();
-	int ratio = (int) Math.round(((double) maxMemory) / (64 * 0x100000));
-	switch (ratio) {
-		case 0:
-		case 1:
-			MAX_AT_ONCE = 100;
-			break;
-		case 2:
-			MAX_AT_ONCE = 200;
-			break;
-		case 3:
-			MAX_AT_ONCE = 300;
-			break;
-		default:
-			MAX_AT_ONCE = 400;
-			break;
-	}
-}
+public static final int MAX_AT_ONCE = 723;
 
 // permanent state
 public SearchPattern pattern;
