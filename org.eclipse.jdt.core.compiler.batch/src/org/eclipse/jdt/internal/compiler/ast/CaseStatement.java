@@ -197,7 +197,7 @@ public static class ResolvedCase {
 	public TypeBinding t; // For ease of access. This.e contains the type binding anyway.
 	public int index;
 	private int intValue;
-	private boolean isPattern;
+	private final boolean isPattern;
 	ResolvedCase(Constant c, Expression e, TypeBinding t, int index) {
 		this.c = c;
 		this.e = e;

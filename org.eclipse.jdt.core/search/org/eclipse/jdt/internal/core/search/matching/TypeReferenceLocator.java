@@ -819,7 +819,7 @@ protected int resolveLevelForTypeOrEnclosingTypes(char[] simpleNamePattern, char
 	}
 	return IMPOSSIBLE_MATCH;
 }
-private Map/*<QualifiedTypeReference, List<TypeBinding>>*/ recordedResolutions = new HashMap();
+private final Map/*<QualifiedTypeReference, List<TypeBinding>>*/ recordedResolutions = new HashMap();
 int resolveLevelForTypeOrQualifyingTypes(TypeReference typeRef, TypeBinding typeBinding) {
 	if (typeBinding == null || !typeBinding.isValidBinding()) return INACCURATE_MATCH;
 	List resolutionsList = (List) this.recordedResolutions.get(typeRef);

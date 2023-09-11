@@ -161,7 +161,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			}
 		}
 
-		private ImportReference[] importReferences;
+		private final ImportReference[] importReferences;
 
 		private boolean importCachesNodeInitialized = false;
 		private ImportReference[] onDemandImportsNodeCache;
@@ -169,8 +169,8 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		private char[][][] importsNodeCache;
 		private int importsNodeCacheCount;
 
-		private HashtableOfObject onDemandFound = new HashtableOfObject();
-		private ObjectVector notImportedFound = new ObjectVector();
+		private final HashtableOfObject onDemandFound = new HashtableOfObject();
+		private final ObjectVector notImportedFound = new ObjectVector();
 
 		public SelectionTypeNameMatchRequestorWrapper(TypeNameMatchRequestor requestor, IJavaSearchScope scope, ImportReference[] importReferences) {
 			super(requestor, scope);
