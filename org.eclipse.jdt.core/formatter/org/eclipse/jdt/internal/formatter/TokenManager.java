@@ -52,7 +52,7 @@ public class TokenManager implements Iterable<Token> {
 	final CommentWrapExecutor commentWrapper;
 
 	private HashMap<Integer, Integer> tokenIndexToNLSAlign;
-	private List<Token[]> formatOffTagPairs = new ArrayList<>();
+	private final List<Token[]> formatOffTagPairs = new ArrayList<>();
 	private int headerEndIndex = 0;
 
 	public TokenManager(List<Token> tokens, String source, DefaultCodeFormatterOptions options) {
@@ -243,7 +243,7 @@ public class TokenManager implements Iterable<Token> {
 		return result;
 	}
 
-	private TokenTraverser positionInLineCounter = new TokenTraverser() {
+	private final TokenTraverser positionInLineCounter = new TokenTraverser() {
 		private boolean isNLSTagInLine = false;
 
 		@Override
