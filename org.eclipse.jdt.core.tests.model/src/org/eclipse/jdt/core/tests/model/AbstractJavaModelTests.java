@@ -33,8 +33,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -128,6 +127,9 @@ import org.eclipse.jdt.internal.core.ResolvedSourceMethod;
 import org.eclipse.jdt.internal.core.ResolvedSourceType;
 import org.eclipse.jdt.internal.core.search.BasicSearchEngine;
 import org.eclipse.jdt.internal.core.util.Util;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
@@ -4022,6 +4024,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	@SuppressWarnings("restriction")
 	public void waitForCharsetDeltaJob() throws CoreException {
 		try {
+			Job.getJobManager().wakeUp(org.eclipse.core.internal.resources.CharsetDeltaJob.FAMILY_CHARSET_DELTA);
 			Job.getJobManager().join(org.eclipse.core.internal.resources.CharsetDeltaJob.FAMILY_CHARSET_DELTA, null);
 		} catch (OperationCanceledException | InterruptedException e) {
 			throw new CoreException(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, e.getMessage(), e));
@@ -4035,6 +4038,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		boolean wasInterrupted = false;
 		do {
 			try {
+				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_AUTO_BUILD);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
 				JavaModelManager.getIndexManager().waitForIndex(isIndexDisabledForTest(), null);
 				wasInterrupted = false;
@@ -4050,6 +4054,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		boolean wasInterrupted = false;
 		do {
 			try {
+				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_MANUAL_REFRESH);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_REFRESH, null);
 				JavaModelManager.getIndexManager().waitForIndex(isIndexDisabledForTest(), null);
 				wasInterrupted = false;
